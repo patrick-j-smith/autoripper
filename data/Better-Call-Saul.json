@@ -1,0 +1,17 @@
+{
+  "type": "show",
+  "name": "Better Call Saul",
+  "year": 2015,
+  "Season 01": {
+    "path": "path to season",
+    "episodes": {
+      "E0": "path/to/file"
+    }
+  },
+  "Season 02": {
+    "path": "path to season",
+    "episodes": {
+      "E0": "path/to/file"
+    }
+  }
+}
