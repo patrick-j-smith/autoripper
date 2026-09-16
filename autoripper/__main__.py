@@ -12,7 +12,7 @@ class Program:
 @dataclass
 class Season:
     name: str
-    path: str | Path
+    paths: list[str | Path]
     episodes: dict[str, Path | str]
 
 @dataclass
@@ -55,6 +55,9 @@ def parse_json(filename: str | Path) -> Show | Movie:
 
 def main() -> int:
     target_dir = Path("/home/patrick-smith/Desktop/media")
+    shows_dir = target_dir / "shows"
+    movies_dir = target_dir / "movies"
+
     data_dir = Path('..') / 'data'
 
     for file in data_dir.rglob("*"):
@@ -68,6 +71,7 @@ def main() -> int:
                 print('movie')
             print('hi')
 
+            # HandBrakeCLI --preset-import-gui -Z "Your Preset Name" -i input.mp4 -o output.mp4
     return 0
 
 

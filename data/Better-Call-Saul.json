@@ -3,15 +3,22 @@
   "name": "Better Call Saul",
   "year": 2015,
   "Season 01": {
-    "path": "path to season",
+    "paths": [
+      "/home/patrick-smith/Videos/Better Call Saul - Season 01 - Disc 1",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 01 - Disc 2",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 01 - Disc 3"
+    ],
     "episodes": {
-      "E0": "path/to/file"
-    }
-  },
-  "Season 02": {
-    "path": "path to season",
-    "episodes": {
-      "E0": "path/to/file"
+      "S01E01": "Better Call Saul - Season 01 - Disc 1_t01.mkv",
+      "S01E02": "Better Call Saul - Season 01 - Disc 1_t02.mkv",
+      "S01E03": "Better Call Saul - Season 01 - Disc 1_t03.mkv",
+      "S01E04": "Better Call Saul - Season 01 - Disc 1_t04.mkv",
+      "S01E05": "Better Call Saul - Season 01 - Disc 2_t01.mkv",
+      "S01E06": "Better Call Saul - Season 01 - Disc 2_t02.mkv",
+      "S01E07": "Better Call Saul - Season 01 - Disc 2_t03.mkv",
+      "S01E08": "Better Call Saul - Season 01 - Disc 3_t01.mkv",
+      "S01E09": "Better Call Saul - Season 01 - Disc 3_t02.mkv",
+      "S01E10": "Better Call Saul - Season 01 - Disc 3_t03.mkv"
     }
   }
 }
