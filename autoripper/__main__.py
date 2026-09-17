@@ -7,7 +7,7 @@ import shutil
 from dataclasses import dataclass
 
 logging.basicConfig(
-    filename="jellyfin_processing.log",
+    filename=Path('..') / 'logs' / "jellyfin_processing.log",
     filemode="w",
     format='%(asctime)s - %(levelname)s:%(message)s',
     level=logging.INFO
@@ -76,8 +76,8 @@ def _process_handbrake(args: list[str]) -> tuple[str, str]:
         text=True,
         universal_newlines=True,
     )
-    for line in proc.stderr:
-        print(line.strip())
+    #for line in proc.stderr:
+    #    print(line.strip())
 
     return proc.communicate()
 
@@ -93,8 +93,9 @@ def process_show(data: Show, output_folder: Path | str) -> None:
             logger.info(f'Season folder already exists: {season_folder}')
             for path in season.paths:
                 path = _check_path(path)
-                logger.info(f'Removing folder: {path}')
-                shutil.rmtree(path)
+                if path.is_dir():
+                    logger.info(f'Removing folder: {path}')
+                    shutil.rmtree(path)
 
             continue
 
