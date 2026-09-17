@@ -20,5 +20,104 @@
       "S01E09": "Better Call Saul - Season 01 - Disc 3_t02.mkv",
       "S01E10": "Better Call Saul - Season 01 - Disc 3_t03.mkv"
     }
+  },
+  "Season 02": {
+    "paths": [
+      "/home/patrick-smith/Videos/Better Call Saul - Season 2 - Disc 1",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 2 - Disc 2",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 2 - Disc 3"
+    ],
+    "episodes": {
+      "S02E01": "Better Call Saul - Season 2 - Disc 1_t01.mkv",
+      "S02E02": "Better Call Saul - Season 2 - Disc 1_t02.mkv",
+      "S02E03": "Better Call Saul - Season 2 - Disc 1_t03.mkv",
+      "S02E04": "Better Call Saul - Season 2 - Disc 2_t01.mkv",
+      "S02E05": "Better Call Saul - Season 2 - Disc 2_t02.mkv",
+      "S02E06": "Better Call Saul - Season 2 - Disc 2_t03.mkv",
+      "S02E07": "Better Call Saul - Season 2 - Disc 2_t04.mkv",
+      "S02E08": "Better Call Saul - Season 2 - Disc 3_t01.mkv",
+      "S02E09": "Better Call Saul - Season 2 - Disc 3_t02.mkv",
+      "S02E10": "Better Call Saul - Season 2 - Disc 3_t03.mkv"
+    }
+  },
+  "Season 03": {
+    "paths": [
+      "/home/patrick-smith/Videos/Better Call Saul - Season 3 - Disc 1",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 3 - Disc 2",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 3 - Disc 3"
+    ],
+    "episodes": {
+      "S03E01": "Better Call Saul - Season 3 - Disc 1_t01.mkv",
+      "S03E02": "Better Call Saul - Season 3 - Disc 1_t02.mkv",
+      "S03E03": "Better Call Saul - Season 3 - Disc 1_t03.mkv",
+      "S03E04": "Better Call Saul - Season 3 - Disc 2_t01.mkv",
+      "S03E05": "Better Call Saul - Season 3 - Disc 2_t02.mkv",
+      "S03E06": "Better Call Saul - Season 3 - Disc 2_t03.mkv",
+      "S03E07": "Better Call Saul - Season 3 - Disc 2_t04.mkv",
+      "S03E08": "Better Call Saul - Season 3 - Disc 3_t01.mkv",
+      "S03E09": "Better Call Saul - Season 3 - Disc 3_t02.mkv",
+      "S03E10": "Better Call Saul - Season 3 - Disc 3_t03.mkv"
+    }
+  },
+  "Season 04": {
+    "paths": [
+      "/home/patrick-smith/Videos/Better Call Saul - Season 4 - Disc 1",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 4 - Disc 2",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 4 - Disc 3"
+    ],
+    "episodes": {
+      "S04E01": "Better Call Saul - Season 4 - Disc 1_t01.mkv",
+      "S04E02": "Better Call Saul - Season 4 - Disc 1_t02.mkv",
+      "S04E03": "Better Call Saul - Season 4 - Disc 1_t03.mkv",
+      "S04E04": "Better Call Saul - Season 4 - Disc 2_t01.mkv",
+      "S04E05": "Better Call Saul - Season 4 - Disc 2_t02.mkv",
+      "S04E06": "Better Call Saul - Season 4 - Disc 2_t03.mkv",
+      "S04E07": "Better Call Saul - Season 4 - Disc 2_t04.mkv",
+      "S04E08": "Better Call Saul - Season 4 - Disc 3_t01.mkv",
+      "S04E09": "Better Call Saul - Season 4 - Disc 3_t02.mkv",
+      "S04E10": "Better Call Saul - Season 4 - Disc 3_t03.mkv"
+    }
+  },
+  "Season 05": {
+    "paths": [
+      "/home/patrick-smith/Videos/Better Call Saul - Season 5 - Disc 1",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 5 - Disc 2",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 5 - Disc 3"
+    ],
+    "episodes": {
+      "S05E01": "Better Call Saul - Season 5 - Disc 1_t01.mkv",
+      "S05E02": "Better Call Saul - Season 5 - Disc 1_t02.mkv",
+      "S05E03": "Better Call Saul - Season 5 - Disc 1_t03.mkv",
+      "S05E04": "Better Call Saul - Season 5 - Disc 2_t01.mkv",
+      "S05E05": "Better Call Saul - Season 5 - Disc 2_t02.mkv",
+      "S05E06": "Better Call Saul - Season 5 - Disc 2_t03.mkv",
+      "S05E07": "Better Call Saul - Season 5 - Disc 2_t04.mkv",
+      "S05E08": "Better Call Saul - Season 5 - Disc 3_t01.mkv",
+      "S05E09": "Better Call Saul - Season 5 - Disc 3_t02.mkv",
+      "S05E10": "Better Call Saul - Season 5 - Disc 3_t03.mkv"
+    }
+  },
+  "Season 06": {
+    "paths": [
+      "/home/patrick-smith/Videos/Better Call Saul - Season 6 - Disc 1",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 6 - Disc 2",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 6 - Disc 3",
+      "/home/patrick-smith/Videos/Better Call Saul - Season 6 - Disc 4"
+    ],
+    "episodes": {
+      "S06E01": "Better Call Saul - Season 6 - Disc 1_t01.mkv",
+      "S06E02": "Better Call Saul - Season 6 - Disc 1_t02.mkv",
+      "S06E03": "Better Call Saul - Season 6 - Disc 1_t03.mkv",
+      "S06E04": "Better Call Saul - Season 6 - Disc 2_t01.mkv",
+      "S06E05": "Better Call Saul - Season 6 - Disc 2_t02.mkv",
+      "S06E06": "Better Call Saul - Season 6 - Disc 2_t03.mkv",
+      "S06E07": "Better Call Saul - Season 6 - Disc 2_t04.mkv",
+      "S06E08": "Better Call Saul - Season 6 - Disc 3_t01.mkv",
+      "S06E09": "Better Call Saul - Season 6 - Disc 3_t02.mkv",
+      "S06E10": "Better Call Saul - Season 6 - Disc 3_t03.mkv",
+      "S06E11": "Better Call Saul - Season 6 - Disc 4_t03.mkv",
+      "S06E12": "Better Call Saul - Season 6 - Disc 4_t02.mkv",
+      "S06E13": "Better Call Saul - Season 6 - Disc 4_t03.mkv"
+    }
   }
 }
