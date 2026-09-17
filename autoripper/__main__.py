@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import logging
 import subprocess
+import shutil
 from dataclasses import dataclass
 
 logging.basicConfig(
@@ -88,11 +89,12 @@ def process_show(data: Show, output_folder: Path | str) -> None:
     for season in data.seasons:
         season_folder = show_folder / f'{season.name}'
 
-        if season_folder.is_file():
+        if season_folder.is_dir():
             logger.info(f'Season folder already exists: {season_folder}')
             for path in season.paths:
                 path = _check_path(path)
-                path.unlink(missing_ok=True)
+                logger.info(f'Removing folder: {path}')
+                shutil.rmtree(path)
 
             continue
 
@@ -125,6 +127,7 @@ def process_movie(data: Movie, output_folder: Path | str) -> None:
 
     if output_file_name.is_file():
         logger.info(f'File already exists: {output_file_name}')
+        logger.info(f'Removing file: {base_file}')
         base_file.unlink(missing_ok=True)
         return None
 
@@ -141,6 +144,7 @@ def process_movie(data: Movie, output_folder: Path | str) -> None:
     else:
         logger.info(f'Requested file to process does not exist: {base_file}')
 
+    logger.info(f'Removing file: {base_file}')
     base_file.unlink(missing_ok=True)
     return None
 
@@ -163,7 +167,6 @@ def main() -> int:
                 process_movie(data, movies_dir)
             logger.info(f'Completed processing data files: {file}')
 
-            # HandBrakeCLI --preset-import-gui -Z "Your Preset Name" -i input.mp4 -o output.mp4
     return 0
 
 
