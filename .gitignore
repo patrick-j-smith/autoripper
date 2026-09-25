@@ -1,0 +1,8 @@
+/venv/
+/.idea/
+/logs/
+/__pycache__/
+/superlists/__pycache__/
+/src/superlists/__pycache__/
+/*.log
+/auto_process/

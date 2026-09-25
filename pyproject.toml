@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autoripper"
+version = "0.0.1"
+authors = [
+  { name="Pat Smith", email="smithpatrick1992@gmail.com" },
+]
+description = "A package to easily pull and plot data for stock APIs"
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "requests",
+    "numpy",
+    "pandas",
+    "scipy",
+]
+license = "MIT"
+license-files = ["LICENSE"]
