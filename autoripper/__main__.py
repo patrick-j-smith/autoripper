@@ -81,7 +81,7 @@ def _process_handbrake(args: list[str]) -> tuple[str, str]:
 
     return proc.communicate()
 
-def process_show(data: Show, output_folder: Path | str) -> None:
+def process_show(data: Show, output_folder: Path | str, cleanup: bool) -> None:
 
     show_folder = _check_path(output_folder) / f'{data.name} ({data.year})'
     show_folder.mkdir(parents=True, exist_ok=True)
@@ -93,7 +93,7 @@ def process_show(data: Show, output_folder: Path | str) -> None:
             logger.info(f'Season folder already exists: {season_folder}')
             for path in season.paths:
                 path = _check_path(path)
-                if path.is_dir():
+                if path.is_dir() and cleanup:
                     logger.info(f'Removing folder: {path}')
                     shutil.rmtree(path)
 
@@ -118,7 +118,7 @@ def process_show(data: Show, output_folder: Path | str) -> None:
 
     return None
 
-def process_movie(data: Movie, output_folder: Path | str) -> None:
+def process_movie(data: Movie, output_folder: Path | str, cleanup: bool) -> None:
 
     movie_folder = _check_path(output_folder) / f'{data.name} ({data.year})'
     movie_folder.mkdir(parents=True, exist_ok=True)
@@ -128,8 +128,10 @@ def process_movie(data: Movie, output_folder: Path | str) -> None:
 
     if output_file_name.is_file():
         logger.info(f'File already exists: {output_file_name}')
-        logger.info(f'Removing file: {base_file}')
-        base_file.unlink(missing_ok=True)
+        if cleanup:
+            logger.info(f'Removing file: {base_file}')
+            base_file.unlink(missing_ok=True)
+
         return None
 
     if base_file.is_file():
@@ -145,8 +147,10 @@ def process_movie(data: Movie, output_folder: Path | str) -> None:
     else:
         logger.info(f'Requested file to process does not exist: {base_file}')
 
-    logger.info(f'Removing file: {base_file}')
-    base_file.unlink(missing_ok=True)
+    if cleanup:
+        logger.info(f'Removing file: {base_file}')
+        base_file.unlink(missing_ok=True)
+
     return None
 
 def main() -> int:
@@ -160,17 +164,34 @@ def main() -> int:
         if file.is_file():
             logger.info(f'Started processing data files: {file}')
             data = parse_json(file)
-            # process file & write too /home/patrick-smith/Desktop/media
-            # delete old files
             if isinstance(data, Show):
-                process_show(data, shows_dir)
+                process_show(data, shows_dir, False)
             else:
-                process_movie(data, movies_dir)
+                process_movie(data, movies_dir, False)
             logger.info(f'Completed processing data files: {file}')
 
     return 0
 
+def process_folder(path: str | Path) -> int:
+    GB = 1024**3
+
+    output_dir = Path('..') / 'auto_process'
+
+    path = _check_path(path)
+    episode_map = {}
+    for directory in path.iterdir():
+        episodes = [str(mkv_file.stem) for mkv_file in directory.rglob('*.mkv') if mkv_file.stat().st_size > 3 * GB]
+        episodes.sort()
+        episode_map[str(directory)] = episodes
+
+    episode_map = dict(sorted(episode_map.items()))
+
+    with open(output_dir / "folder_automated_summary.json", "w") as file:
+        json.dump(episode_map, file, indent=4, sort_keys=True)
+
+    return 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
+    #sys.exit(process_folder("/home/patrick-smith/Videos"))
