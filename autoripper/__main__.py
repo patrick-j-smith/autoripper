@@ -8,7 +8,7 @@ import shutil
 from dataclasses import dataclass
 
 logging.basicConfig(
-    filename=Path('..') / 'logs' / "jellyfin_processing.log",
+    filename=Path(__file__).resolve().parents[1] / 'logs' / "jellyfin_processing.log",
     filemode="w",
     format='%(asctime)s - %(levelname)s:%(message)s',
     level=logging.INFO
@@ -168,8 +168,8 @@ def process_movie(data: Movie, output_folder: Path | str, cleanup: bool) -> None
     return None
 
 def handbrake_process(
-        target_dir: Path=Path("/home/patrick-smith/Desktop/media"),
-        data_dir: Path=Path('..') / 'data'
+    target_dir: Path,
+    data_dir: Path
 ) -> int:
 
     shows_dir = target_dir / "shows"
@@ -190,7 +190,7 @@ def handbrake_process(
 def process_folder(path: str | Path) -> int:
     GB = 1024**3
 
-    output_dir = Path('..') / 'auto_process'
+    output_dir = Path(__file__).resolve().parents[1] / 'auto_process'
 
     path = _check_path(path)
     episode_map = {}
@@ -211,6 +211,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parse file processing arguments.")
     parser.add_argument("--target_dir", type=str, default="/home/patrick-smith/Desktop/media")
     parser.add_argument("--data_dir", type=str, default="/home/patrick-smith/Workspace/autoripper/data")
+    parser.add_argument("--raw_files", type=str, default="/home/patrick-smith/Videos")
 
     parser.add_argument("-pf", action="store_true", help="Increase output verbosity")
     parser.add_argument("-hp", action="store_true", help="Increase output verbosity")
@@ -219,8 +220,9 @@ if __name__ == "__main__":
 
     target_dir = Path(args.target_dir)
     data_dir = Path(args.data_dir)
+    raw_files = Path(args.raw_files)
 
     if args.hp:
         sys.exit(handbrake_process(target_dir, data_dir))
     elif args.pf:
-        sys.exit(process_folder(target_dir))
+        sys.exit(process_folder(raw_files))
