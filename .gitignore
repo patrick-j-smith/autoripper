@@ -6,3 +6,4 @@
 /src/superlists/__pycache__/
 /*.log
 /auto_process/
+/data/
