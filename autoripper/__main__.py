@@ -1,4 +1,5 @@
 import sys
+import argparse
 import json
 from pathlib import Path
 import logging
@@ -76,10 +77,26 @@ def _process_handbrake(args: list[str]) -> tuple[str, str]:
         text=True,
         universal_newlines=True,
     )
-    #for line in proc.stderr:
-    #    print(line.strip())
 
     return proc.communicate()
+
+def _clean_processed_episodes(season: Season, show_folder: Path, show: str) -> None:
+    season_folder = show_folder / f'{season.name}'
+    episodes_processed = []
+
+    if season_folder.is_dir():
+        logger.info(f'Season folder already exists: {season_folder}')
+        episodes_in_folder = [file.stem for file in season_folder.iterdir() if file.is_file()]
+        for episode in season.episodes.keys():
+            if f'{show} {episode}' in episodes_in_folder:
+                episodes_processed.append(episode)
+
+        for key in episodes_processed:
+            logger.info(f'Episode already processed: {key}')
+            season.episodes.pop(key)
+
+    return
+
 
 def process_show(data: Show, output_folder: Path | str, cleanup: bool) -> None:
 
@@ -88,21 +105,12 @@ def process_show(data: Show, output_folder: Path | str, cleanup: bool) -> None:
 
     for season in data.seasons:
         season_folder = show_folder / f'{season.name}'
+        _clean_processed_episodes(season, show_folder, data.name)
 
-        if season_folder.is_dir():
-            logger.info(f'Season folder already exists: {season_folder}')
-            for path in season.paths:
-                path = _check_path(path)
-                if path.is_dir() and cleanup:
-                    logger.info(f'Removing folder: {path}')
-                    shutil.rmtree(path)
-
-            continue
-
-        season_folder.mkdir(parents=True, exist_ok=True)
         for k, v in season.episodes.items():
             output_file_name = season_folder / f'{data.name} {k}.mp4'
             base_file_paths = [_check_path(path) / v for path in season.paths]
+
             for base_file in base_file_paths:
                 if base_file.is_file():
                     cmd = [
@@ -115,6 +123,12 @@ def process_show(data: Show, output_folder: Path | str, cleanup: bool) -> None:
                     logger.info(f'Handbrake CMD: {cmd}')
                     stdout, stderr = _process_handbrake(cmd)
                     break
+
+        for path in season.paths:
+            path = _check_path(path)
+            if path.is_dir() and cleanup:
+                logger.info(f'Removing folder: {path}')
+                shutil.rmtree(path)
 
     return None
 
@@ -153,12 +167,13 @@ def process_movie(data: Movie, output_folder: Path | str, cleanup: bool) -> None
 
     return None
 
-def main() -> int:
-    target_dir = Path("/home/patrick-smith/Desktop/media")
+def handbrake_process(
+        target_dir: Path=Path("/home/patrick-smith/Desktop/media"),
+        data_dir: Path=Path('..') / 'data'
+) -> int:
+
     shows_dir = target_dir / "shows"
     movies_dir = target_dir / "movies"
-
-    data_dir = Path('..') / 'data'
 
     for file in data_dir.rglob("*"):
         if file.is_file():
@@ -193,5 +208,19 @@ def process_folder(path: str | Path) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
-    #sys.exit(process_folder("/home/patrick-smith/Videos"))
+    parser = argparse.ArgumentParser(description="Parse file processing arguments.")
+    parser.add_argument("--target_dir", type=str, default="/home/patrick-smith/Desktop/media")
+    parser.add_argument("--data_dir", type=str, default="/home/patrick-smith/Workspace/autoripper/data")
+
+    parser.add_argument("-pf", action="store_true", help="Increase output verbosity")
+    parser.add_argument("-hp", action="store_true", help="Increase output verbosity")
+
+    args = parser.parse_args()
+
+    target_dir = Path(args.target_dir)
+    data_dir = Path(args.data_dir)
+
+    if args.hp:
+        sys.exit(handbrake_process(target_dir, data_dir))
+    elif args.pf:
+        sys.exit(process_folder(target_dir))
